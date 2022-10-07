@@ -1,0 +1,8 @@
+MyProcess {"MyProcess":1}
+Initialization Complete
+MyProcess {"MyProcess":2}
+INFO Sending Message
+MyProcess {"MyProcess":3}
+INFO Receiving Message
+MyProcess {"MyProcess":4}
+INFO Example Complete

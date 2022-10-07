@@ -1,0 +1,42 @@
+client {"client":1}
+Initialization Complete
+client {"client":2}
+INFO Sending message to server
+client {"client":3, "server":3}
+INFO Received Message from server
+client {"client":4, "server":3}
+INFO Sending message to server
+client {"client":5, "server":5}
+INFO Received Message from server
+client {"client":6, "server":5}
+INFO Sending message to server
+client {"client":7, "server":7}
+INFO Received Message from server
+client {"server":7, "client":8}
+INFO Sending message to server
+client {"client":9, "server":9}
+INFO Received Message from server
+client {"client":10, "server":9}
+INFO Sending message to server
+client {"client":11, "server":11}
+INFO Received Message from server
+client {"client":12, "server":11}
+INFO Sending message to server
+client {"server":13, "client":13}
+INFO Received Message from server
+client {"client":14, "server":13}
+INFO Sending message to server
+client {"client":15, "server":15}
+INFO Received Message from server
+client {"client":16, "server":15}
+INFO Sending message to server
+client {"server":17, "client":17}
+INFO Received Message from server
+client {"client":18, "server":17}
+INFO Sending message to server
+client {"client":19, "server":19}
+INFO Received Message from server
+client {"client":20, "server":19}
+INFO Sending message to server
+client {"client":21, "server":21}
+INFO Received Message from server
