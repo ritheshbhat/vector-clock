@@ -2,15 +2,30 @@ package thirdNode
 
 import (
 	"fmt"
+	"net"
+	"os"
 
 	"github.com/DistributedClocks/GoVector/govec"
+	"github.com/ritheshbhat/vector-clock/utils"
 )
 
-func StartThirdNode() {
-	logger := govec.InitGoVector("thirdNode", "LogFile", govec.GetDefaultConfig())
-	// Encode message, and update vector clock
-	messagePayload := []byte("sample-payload")
-	vectorClockMessage := logger.PrepareSend("Sending Message", messagePayload, govec.GetDefaultLogOptions())
-	fmt.Println(string(vectorClockMessage))
+func StartServer(listen string, done chan int) {
+
+	logger := govec.InitGoVector("thirdNode", "server", govec.GetDefaultConfig())
+	fmt.Println("third node vector clock event is...")
+	logger.GetCurrentVC().PrintVC()
+	conn, _ := net.Listen("tcp", ":"+listen)
+	defer conn.Close()
+	for {
+		fmt.Println("accepting req...")
+		// Listen for an incoming connection.
+		conn, err := conn.Accept()
+		if err != nil {
+			fmt.Println("Error accepting: ", err.Error())
+			os.Exit(1)
+		}
+		// Handle connections in a new goroutine.
+		go utils.HandleRequest(conn, logger)
+	}
 
 }

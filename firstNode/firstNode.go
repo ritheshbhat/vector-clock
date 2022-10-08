@@ -2,36 +2,35 @@ package firstNode
 
 import (
 	"fmt"
-	"log"
-	"net/http"
+	"net"
+	"os"
 
 	"github.com/DistributedClocks/GoVector/govec"
-	"github.com/gorilla/mux"
+	"github.com/ritheshbhat/vector-clock/utils"
 )
 
-type server struct{}
+func StartServer(listen string, done chan int) {
 
-func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "hello world"}`))
-}
+	logger := govec.InitGoVector("firstNode", "server", govec.GetDefaultConfig())
 
-func firstNode(w http.ResponseWriter, r *http.Request) {
-	logger := govec.InitGoVector("firstNode", "LogFile", govec.GetDefaultConfig())
-	// Encode message, and update vector clock
-	messagePayload := []byte("sample-payload")
-	vectorClockMessage := logger.PrepareSend("Sending Message", messagePayload, govec.GetDefaultLogOptions())
-	fmt.Println(string(vectorClockMessage))
+	fmt.Println("first Node server vector clock event is...")
+	logger.GetCurrentVC().PrintVC()
+	conn, err := net.Listen("tcp", ":"+listen)
+	if err!=nil{
+		fmt.Println("err is", err)
+	}
+	defer conn.Close()
 
-}
-func StartFirstNode() {
-
-	router := mux.NewRouter()
-	router.HandleFunc("/first-node", firstNode)
-	s := &server{}
-	http.Handle("/", s)
-	fmt.Println("serving node 1.")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	for {
+		fmt.Println("accepting req...")
+		// Listen for an incoming connection.
+		conn, err := conn.Accept()
+		if err != nil {
+			fmt.Println("Error accepting: ", err.Error())
+			os.Exit(1)
+		}
+		// Handle connections in a new goroutine.
+		go utils.HandleRequest(conn, logger)
+	}
 
 }

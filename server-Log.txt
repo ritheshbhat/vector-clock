@@ -1,42 +1,16 @@
-server {"server":1}
+firstNode {"firstNode":1}
 Initialization Complete
-server {"server":2, "client":2}
+secondNode {"secondNode":1}
+Initialization Complete
+secondNode {"secondNode":2, "secondNodeClient":2}
 INFO Received Message From Client
-server {"server":3, "client":2}
-INFO Replying to client
-server {"server":4, "client":4}
+firstNode {"firstNodeClient":2, "firstNode":2}
 INFO Received Message From Client
-server {"server":5, "client":4}
-INFO Replying to client
-server {"server":6, "client":6}
+secondNode {"secondNode":3, "secondNodeClient":2}
+INFO sending ack to client
+firstNode {"firstNode":3, "firstNodeClient":2}
+INFO sending ack to client
+thirdNode {"thirdNode":2, "thirdNodeClient":2}
 INFO Received Message From Client
-server {"server":7, "client":6}
-INFO Replying to client
-server {"server":8, "client":8}
-INFO Received Message From Client
-server {"server":9, "client":8}
-INFO Replying to client
-server {"server":10, "client":10}
-INFO Received Message From Client
-server {"server":11, "client":10}
-INFO Replying to client
-server {"server":12, "client":12}
-INFO Received Message From Client
-server {"server":13, "client":12}
-INFO Replying to client
-server {"client":14, "server":14}
-INFO Received Message From Client
-server {"server":15, "client":14}
-INFO Replying to client
-server {"server":16, "client":16}
-INFO Received Message From Client
-server {"server":17, "client":16}
-INFO Replying to client
-server {"server":18, "client":18}
-INFO Received Message From Client
-server {"server":19, "client":18}
-INFO Replying to client
-server {"server":20, "client":20}
-INFO Received Message From Client
-server {"server":21, "client":20}
-INFO Replying to client
+thirdNode {"thirdNode":3, "thirdNodeClient":2}
+INFO sending ack to client
