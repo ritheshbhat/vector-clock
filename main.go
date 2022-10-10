@@ -113,14 +113,14 @@ func makeServerCall(conn *net.TCPConn, Logger *govec.GoLog, clientName string, o
 	outBuf := Logger.PrepareSend("Sending message to server", outgoingMessage, opts)
 	_, errWrite := conn.Write(outBuf)
 	if errWrite != nil {
-		utils.PrintErr(errWrite)
+		utils.ExitIfError(errWrite)
 	}
 	fmt.Printf("vector clock value post sending request by %v", clientName)
 	Logger.GetCurrentVC().PrintVC()
 	var inBuf [512]byte
 	var incommingMessage int
 	n, errRead := conn.Read(inBuf[0:])
-	utils.PrintErr(errRead)
+	utils.ExitIfError(errRead)
 	Logger.UnpackReceive("Received Message from server", inBuf[0:n], &incommingMessage, opts)
 	fmt.Printf("vector clock value after receiving request from server by. %v ", clientName)
 	Logger.GetCurrentVC().PrintVC()

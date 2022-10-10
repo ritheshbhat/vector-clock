@@ -40,19 +40,19 @@ func HandleRequest(conn net.Conn, logger *govec.GoLog, serverName string) {
 func SetupConnection(sendingPort, listeningPort string) *net.TCPConn {
 	// x := net.DialTimeout("tcp",":"+sendingPort,time.Second * 1)
 	rAddr, err := net.ResolveTCPAddr("tcp", ":"+sendingPort)
-	PrintErr(err)
+	ExitIfError(err)
 	lAddr, err1 := net.ResolveTCPAddr("tcp", ":"+listeningPort)
-	PrintErr(err)
+	ExitIfError(err)
 
 	conn, errDial := net.DialTCP("tcp", lAddr, rAddr)
-	PrintErr(errDial)
+	ExitIfError(errDial)
 	if (err == nil) && (err1 == nil) && (errDial == nil) {
 		return conn
 	}
 	return nil
 }
 
-func PrintErr(err error) {
+func ExitIfError(err error) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
