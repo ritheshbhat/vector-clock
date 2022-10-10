@@ -9,14 +9,13 @@ import (
 	"github.com/DistributedClocks/GoVector/govec"
 )
 
-func HandleRequest(conn net.Conn, logger *govec.GoLog) {
-	fmt.Println("before receiving event, log value is")
+func HandleRequest(conn net.Conn, logger *govec.GoLog, serverName string) {
+	fmt.Printf("before receiving event, log value in %v server is", serverName)
 	logger.GetCurrentVC().PrintVC()
 
 	opts := govec.GetDefaultLogOptions()
 	var data string
 	buf := make([]byte, 1024)
-	fmt.Println("handling request...")
 	for {
 		_, err := bufio.NewReader(conn).Read(buf)
 		if err != nil {
@@ -24,26 +23,30 @@ func HandleRequest(conn net.Conn, logger *govec.GoLog) {
 			return
 		}
 		logger.UnpackReceive("Received Message From Client", buf, &data, opts)
-		fmt.Println("Received ", data)
-		fmt.Println("log value post receiving request.")
+		fmt.Printf("vector clock value for %v after receiving request is: ", serverName)
 		logger.GetCurrentVC().PrintVC()
 		resp := logger.PrepareSend("sending ack to client", 122, opts)
-		conn.Write(resp)
-		fmt.Println("sent request to client. log value is.")
+		_, err = conn.Write(resp)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("vector clock value for %v after sending ack is: ", serverName)
 		logger.GetCurrentVC().PrintVC()
-		break
+		defer conn.Close()
 	}
 }
 
 func SetupConnection(sendingPort, listeningPort string) *net.TCPConn {
-	rAddr, errR := net.ResolveTCPAddr("tcp", ":"+sendingPort)
-	PrintErr(errR)
-	lAddr, errL := net.ResolveTCPAddr("tcp", ":"+listeningPort)
-	PrintErr(errL)
+	// x := net.DialTimeout("tcp",":"+sendingPort,time.Second * 1)
+	rAddr, err := net.ResolveTCPAddr("tcp", ":"+sendingPort)
+	PrintErr(err)
+	lAddr, err1 := net.ResolveTCPAddr("tcp", ":"+listeningPort)
+	PrintErr(err)
 
 	conn, errDial := net.DialTCP("tcp", lAddr, rAddr)
 	PrintErr(errDial)
-	if (errR == nil) && (errL == nil) && (errDial == nil) {
+	if (err == nil) && (err1 == nil) && (errDial == nil) {
 		return conn
 	}
 	return nil

@@ -9,15 +9,15 @@ import (
 	"github.com/ritheshbhat/vector-clock/utils"
 )
 
-func StartServer(listen string, done chan int) {
+func StartServer(listen string) {
+	name := "thirdNode"
 
-	logger := govec.InitGoVector("thirdNode", "server", govec.GetDefaultConfig())
-	fmt.Println("third node vector clock event is...")
+	logger := govec.InitGoVector(name, "server", govec.GetDefaultConfig())
+	fmt.Println("third node vector clock event is: ")
 	logger.GetCurrentVC().PrintVC()
 	conn, _ := net.Listen("tcp", ":"+listen)
 	defer conn.Close()
 	for {
-		fmt.Println("accepting req...")
 		// Listen for an incoming connection.
 		conn, err := conn.Accept()
 		if err != nil {
@@ -25,7 +25,8 @@ func StartServer(listen string, done chan int) {
 			os.Exit(1)
 		}
 		// Handle connections in a new goroutine.
-		go utils.HandleRequest(conn, logger)
+		go utils.HandleRequest(conn, logger,name)
 	}
+
 
 }

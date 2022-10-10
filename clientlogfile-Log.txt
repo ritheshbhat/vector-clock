@@ -1,16 +1,38 @@
-secondNodeClient {"secondNodeClient":1}
+client {"client":1}
 Initialization Complete
-firstNodeClient {"firstNodeClient":1}
-Initialization Complete
-secondNodeClient {"secondNodeClient":2}
+client {"client":2}
 INFO Sending message to server
-firstNodeClient {"firstNodeClient":2}
-INFO Sending message to server
-secondNodeClient {"secondNodeClient":3, "secondNode":3}
+client {"client":3, "firstNode":3}
 INFO Received Message from server
-firstNodeClient {"firstNodeClient":3, "firstNode":3}
-INFO Received Message from server
-thirdNodeClient {"thirdNodeClient":2}
+client {"firstNode":3, "client":4}
 INFO Sending message to server
-thirdNodeClient {"thirdNodeClient":3, "thirdNode":3}
+client {"client":5, "firstNode":3, "secondNode":3}
+INFO Received Message from server
+client {"client":6, "firstNode":3, "secondNode":3}
+INFO Sending message to server
+client {"thirdNode":3, "client":7, "firstNode":3, "secondNode":3}
+INFO Received Message from server
+client {"client":8, "firstNode":3, "secondNode":3, "thirdNode":3}
+INFO Sending message to server
+client {"client":9, "firstNode":3, "secondNode":3, "thirdNode":5}
+INFO Received Message from server
+client {"client":10, "firstNode":3, "secondNode":3, "thirdNode":5}
+INFO Sending message to server
+client {"client":11, "firstNode":3, "secondNode":3, "thirdNode":7}
+INFO Received Message from server
+client {"client":12, "firstNode":3, "secondNode":3, "thirdNode":7}
+INFO Sending message to server
+client {"client":13, "firstNode":3, "secondNode":3, "thirdNode":9}
+INFO Received Message from server
+client {"thirdNode":9, "client":14, "firstNode":3, "secondNode":3}
+INFO Sending message to server
+client {"thirdNode":11, "client":15, "firstNode":3, "secondNode":3}
+INFO Received Message from server
+client {"thirdNode":11, "client":16, "firstNode":3, "secondNode":3}
+INFO Sending message to server
+client {"firstNode":5, "secondNode":3, "thirdNode":11, "client":17}
+INFO Received Message from server
+client {"client":18, "firstNode":5, "secondNode":3, "thirdNode":11}
+INFO Sending message to server
+client {"client":19, "firstNode":5, "secondNode":5, "thirdNode":11}
 INFO Received Message from server

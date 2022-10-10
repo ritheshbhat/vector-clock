@@ -1,16 +1,40 @@
+thirdNode {"thirdNode":1}
+Initialization Complete
 firstNode {"firstNode":1}
 Initialization Complete
-secondNode {"secondNode":1}
-Initialization Complete
-secondNode {"secondNode":2, "secondNodeClient":2}
+firstNode {"firstNode":2, "client":2}
 INFO Received Message From Client
-firstNode {"firstNodeClient":2, "firstNode":2}
-INFO Received Message From Client
-secondNode {"secondNode":3, "secondNodeClient":2}
+firstNode {"firstNode":3, "client":2}
 INFO sending ack to client
-firstNode {"firstNode":3, "firstNodeClient":2}
-INFO sending ack to client
-thirdNode {"thirdNode":2, "thirdNodeClient":2}
+secondNode {"secondNode":2, "client":4, "firstNode":3}
 INFO Received Message From Client
-thirdNode {"thirdNode":3, "thirdNodeClient":2}
+secondNode {"client":4, "firstNode":3, "secondNode":3}
+INFO sending ack to client
+thirdNode {"thirdNode":2, "secondNode":3, "client":6, "firstNode":3}
+INFO Received Message From Client
+thirdNode {"thirdNode":3, "secondNode":3, "client":6, "firstNode":3}
+INFO sending ack to client
+thirdNode {"thirdNode":4, "secondNode":3, "client":8, "firstNode":3}
+INFO Received Message From Client
+thirdNode {"thirdNode":5, "secondNode":3, "client":8, "firstNode":3}
+INFO sending ack to client
+thirdNode {"thirdNode":6, "secondNode":3, "client":10, "firstNode":3}
+INFO Received Message From Client
+thirdNode {"thirdNode":7, "secondNode":3, "client":10, "firstNode":3}
+INFO sending ack to client
+thirdNode {"thirdNode":8, "secondNode":3, "client":12, "firstNode":3}
+INFO Received Message From Client
+thirdNode {"thirdNode":9, "secondNode":3, "client":12, "firstNode":3}
+INFO sending ack to client
+thirdNode {"firstNode":3, "thirdNode":10, "secondNode":3, "client":14}
+INFO Received Message From Client
+thirdNode {"thirdNode":11, "secondNode":3, "client":14, "firstNode":3}
+INFO sending ack to client
+firstNode {"firstNode":4, "client":16, "secondNode":3, "thirdNode":11}
+INFO Received Message From Client
+firstNode {"thirdNode":11, "firstNode":5, "client":16, "secondNode":3}
+INFO sending ack to client
+secondNode {"secondNode":4, "client":18, "firstNode":5, "thirdNode":11}
+INFO Received Message From Client
+secondNode {"secondNode":5, "client":18, "firstNode":5, "thirdNode":11}
 INFO sending ack to client
